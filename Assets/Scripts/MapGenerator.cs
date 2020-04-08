@@ -2,41 +2,65 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.Tilemaps;
+using UnityEditor;
 
 public class MapGenerator : MonoBehaviour
 {
+    #region Variables
 
-    //public int width;
-    //public int height;
+    [SerializeField]
+    InputField txtWidth;
+    [SerializeField]
+    InputField txtHeight;
+    [SerializeField]
+    Dropdown ddlType;
+    [SerializeField]
+    Tilemap topMap;
+    [SerializeField]
+    RuleTile topTile;
+    [Range(0, 100)]
+    [SerializeField]
+    private int randomFillPercent;
+    [SerializeField]
+    private Camera camera;
 
+    private int count = 0;
     public string seed;
     public bool useRandomSeed;
 
-    [Range(0, 100)]
-    public int randomFillPercent;
-
     int[,] map;
+
+    #endregion
+
 
     void Start()
     {
-        //GenerateMap();
+
     }
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0)) {
-        //	GenerateMap();
-        //}
+        Movement();
+    }
+
+     private void Movement()
+    {
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        camera.transform.Translate(Vector3.right * 5 * horizontalInput * Time.deltaTime);
+        camera.transform.Translate(Vector3.up * 5 * verticalInput * Time.deltaTime);
+
     }
 
     void GenerateMap(int width, int height)
     {
         map = new int[width, height];
-        RandomFillMap(width,height);
+        RandomFillMap(width, height);
 
         for (int i = 0; i < 5; i++)
         {
-            SmoothMap(width,height);
+            SmoothMap(width, height);
         }
     }
 
@@ -108,27 +132,58 @@ public class MapGenerator : MonoBehaviour
     }
 
 
-    void OnDrawGizmos()
+    public void SaveAssetMap(Dropdown ddl)
     {
-        //if (map != null)
-        //{
-        //    for (int x = 0; x < width; x++)
-        //    {
-        //        for (int y = 0; y < height; y++)
-        //        {
-        //            Gizmos.color = (map[x, y] == 1) ? Color.black : Color.white;
-        //            Vector3 pos = new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0f);
-        //            Gizmos.DrawCube(pos, Vector3.one);
-        //        }
-        //    }
-        //}
+        string saveName = "tmapXY_" + count;
+        var mf = GameObject.Find("Grid");
+        string root="Assets/Prefabs/" + ddl.value+ "/";
+        if(!System.IO.Directory.Exists(root))
+        {
+            System.IO.Directory.CreateDirectory(root);
+        }
+        if (mf)
+        {
+            var savePath = root + saveName + ".prefab";
+            if (PrefabUtility.CreatePrefab(savePath,mf))
+            {
+                EditorUtility.DisplayDialog("Tilemap saved", "Your Tilemap was saved under" + savePath, "Continue");
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Tilemap NOT saved", "An ERROR occured while trying to saveTilemap under" + savePath, "Continue");
+            }
+
+
+        }
+
+
     }
 
-    public void DrawTileMap(Dropdown ddl, int width, int height)
+
+    public void DrawTileMap(Dropdown ddl)
     {
         if (ddl.value == 0)
         {
+            var width = Convert.ToInt32(txtWidth.text);
+            var height = Convert.ToInt32(txtHeight.text);
+            topMap.ClearAllTiles();
+            Debug.Log(width);
+            Debug.Log(height);
             GenerateMap(width, height);
+            if (map != null)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        if (map[x, y] == 1)
+                        {
+                            topMap.SetTile(new Vector3Int(-x + width / 2, -y + height / 2, 0), topTile);
+                        }
+                    }
+                }
+
+            }
         }
     }
 
