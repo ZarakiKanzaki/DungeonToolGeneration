@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode9.2
 rvm:
 - 2.2         #see before_install for getting RVM stable.
-dist: xenial
+# dist: xenial
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 
@@ -28,7 +28,7 @@ install:
 script:
 - ./travis-build/build.sh
 - ./travis-build/run-tests.sh
-- sonar-scanner
+# - sonar-scanner
 
 after_success:
 - ./travis-build/export-unity-package.sh
