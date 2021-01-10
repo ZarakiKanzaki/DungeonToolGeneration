@@ -25,7 +25,7 @@ branches:
 
 
 env:
-- TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
+- TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="zk_dtg" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 
 addons:
   sonarcloud:
