@@ -134,6 +134,7 @@ public class MapGenerator : MonoBehaviour
 
     public void SaveAssetMap(Dropdown ddl)
     {
+        // comment on this row just to understand if travis works
         string saveName = "tmapXY_" + count;
         var mf = GameObject.Find("Grid");
         string root="Assets/Prefabs/" + ddl.value+ "/";
