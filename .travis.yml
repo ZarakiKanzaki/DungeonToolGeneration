@@ -16,12 +16,10 @@ dist: xenial
 # specific branch build
 trigger:
   branches:
-    include:
+    only:
     - master
-    - releases/*
     pr:
     - master
-    - releases/*
     exclude:
     - releases/old*
 
