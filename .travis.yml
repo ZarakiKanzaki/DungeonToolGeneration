@@ -6,6 +6,11 @@ rvm:
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 
+addons:
+  sonarcloud:
+    organization: "sonarcloud_organization_key" # the key of the org you chose at step #3
+    token:
+      secure: "04255678b4efe6d54ee7b09f4ed0807dab5b09d2" # encrypted value of your token
 
 cache:
   directories:
@@ -22,6 +27,7 @@ install:
 script:
 - ./travis-build/build.sh
 - ./travis-build/run-tests.sh
+- sonar-scanner
 
 after_success:
 - ./travis-build/export-unity-package.sh
