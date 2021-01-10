@@ -15,20 +15,29 @@ addons:
 cache:
   directories:
     - $UNITY_DOWNLOAD_CACHE
+    - $HOME/.sonar/cache
+    # This contains the CFamily cache. According to https://docs.travis-ci.com/user/caching/#pull-request-builds-and-caches,
+    # for a PR, it will use the cache of the target branch if the branch of the PR does not already have its cache.
+    - $HOME/.cfamily
 
 
 before_install:
 - chmod a+x ./travis-build/*.sh
 
 install:
-- echo "##vso[task.setvariable variable=JAVA_HOME]$JAVA_HOME_11_X64"
 - cat /etc/hosts
 - ./travis-build/install-unity.sh
 
 script:
 - ./travis-build/build.sh
 - ./travis-build/run-tests.sh
-- sonar-scanner
+- NUMBER_OF_PROCESSORS=$(sysctl -n hw.ncpu)
+# Wraps the compilation with the Build Wrapper to generate configuration (used
+# later by the SonarQube Scanner) into the "bw-output" folder
+- build-wrapper-macosx-x86 --out-dir bw-output xcodebuild -project sonar_scanner_example.xcodeproj -configuration Release
+# And finally run the SonarQube analysis - read the "sonar-project.properties"
+# file to see the specific configuration
+- sonar-scanner -Dsonar.cfamily.cache.enabled=true -Dsonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily -Dsonar.cfamily.threads=${NUMBER_OF_PROCESSORS}
 
 # after_success:
 # - ./travis-build/export-unity-package.sh
