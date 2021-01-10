@@ -31,13 +31,7 @@ install:
 script:
 - ./travis-build/build.sh
 - ./travis-build/run-tests.sh
-- NUMBER_OF_PROCESSORS=$(sysctl -n hw.ncpu)
-# Wraps the compilation with the Build Wrapper to generate configuration (used
-# later by the SonarQube Scanner) into the "bw-output" folder
-- build-wrapper-macosx-x86 --out-dir bw-output xcodebuild -project sonar_scanner_example.xcodeproj -configuration Release
-# And finally run the SonarQube analysis - read the "sonar-project.properties"
-# file to see the specific configuration
-- sonar-scanner -Dsonar.cfamily.cache.enabled=true -Dsonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily -Dsonar.cfamily.threads=${NUMBER_OF_PROCESSORS}
+# - sonar-scanner
 
 # after_success:
 # - ./travis-build/export-unity-package.sh
