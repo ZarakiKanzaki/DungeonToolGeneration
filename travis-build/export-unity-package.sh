@@ -18,36 +18,38 @@ mkdir $UNITY_BUILD_DIR
   -logFile \
   -projectPath "$PROJECT_PATH" \
   -exportPackage "Assets" "$EXPORT_PATH" \
+  -username "$UNITYEMAIL" \
+  -password "$UNITYPASSWORD" \
   -quit \
   | tee "$LOG_FILE"
   
 if [ $? = 0 ] ; then
-	echo "Created package successfully."
-	ERROR_CODE=0
-	
-	echo "Packaging unity package into release..."
-	#Preprare release unity package by packing into ZIP
-	RELEASE_ZIP_FILE=$RELEASE_DIRECTORY/$PROJECT_NAME-v$TRAVIS_TAG.zip
+  echo "Created package successfully."
+  ERROR_CODE=0
+  
+  echo "Packaging unity package into release..."
+  #Preprare release unity package by packing into ZIP
+  RELEASE_ZIP_FILE=$RELEASE_DIRECTORY/$PROJECT_NAME-v$TRAVIS_TAG.zip
 
-	mkdir -p $RELEASE_DIRECTORY
+  mkdir -p $RELEASE_DIRECTORY
 
-	echo "Preparing release for version: $TRAVIS_TAG"
-	cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
-	cp "./README.md" "$RELEASE_DIRECTORY"
-	cp "./LICENSE" "$RELEASE_DIRECTORY"
+  echo "Preparing release for version: $TRAVIS_TAG"
+  cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
+  cp "./README.md" "$RELEASE_DIRECTORY"
+  cp "./LICENSE" "$RELEASE_DIRECTORY"
 
-	echo "Files in release directory:"
-	ls $RELEASE_DIRECTORY
+  echo "Files in release directory:"
+  ls $RELEASE_DIRECTORY
 
-	zip -6 -r $RELEASE_ZIP_FILE $RELEASE_DIRECTORY
+  zip -6 -r $RELEASE_ZIP_FILE $RELEASE_DIRECTORY
 
-	echo "Release zip package ready. Zipinfo:"
-	zipinfo $RELEASE_ZIP_FILE
-	
+  echo "Release zip package ready. Zipinfo:"
+  zipinfo $RELEASE_ZIP_FILE
+  
 else
-	echo "Creating package failed. Exited with $?."
-	ls
-	ERROR_CODE=1
+  echo "Creating package failed. Exited with $?."
+  ls
+  ERROR_CODE=1
 fi
 
 #echo 'Build logs:'
