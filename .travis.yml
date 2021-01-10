@@ -14,15 +14,14 @@ dist: xenial
 #       types: [opened, synchronize, reopened]
 
 # specific branch build
-trigger:
-  branches:
-    only:
-    - master
-    pr:
-    - master
-    - develop
-    except:
-    - develop
+branches:
+  only:
+  - master
+  pr:
+  - master
+  - develop
+  except:
+  - develop
 
 
 env:
