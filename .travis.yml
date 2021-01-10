@@ -3,6 +3,16 @@ osx_image: xcode9.2
 rvm:
 - 2.2         #see before_install for getting RVM stable.
 dist: xenial
+
+on:
+  # Trigger analysis when pushing in master or pull requests, and when creating
+  # a pull request. 
+  push:
+    branches:
+      - master
+  pull_request:
+      types: [opened, synchronize, reopened]
+
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 
@@ -32,14 +42,14 @@ script:
 after_success:
 - ./travis-build/export-unity-package.sh
 
-# before_deploy:
-# - DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
+before_deploy:
+- DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
 
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_TOKEN
-#   file: $DEPLOY_UNITYPACKAGE
-#   skip_cleanup: true
-#   overwrite: true
-#   on:
-#     tags: true 
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: $DEPLOY_UNITYPACKAGE
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true 
