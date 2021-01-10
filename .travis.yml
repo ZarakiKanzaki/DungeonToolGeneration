@@ -17,6 +17,16 @@ cache:
     - $UNITY_DOWNLOAD_CACHE
 
     
+steps:
+- task: PowerShell@2
+  displayName: "Use JDK11 by default"
+  inputs:
+    targetType: 'inline'
+    script: |
+      $jdkPath = $env:JAVA_HOME_11_X64
+      Write-Host "##vso[task.setvariable variable=JAVA_HOME]$jdkPath"
+    
+        
 before_install:
 - chmod a+x ./travis-build/*.sh
 
