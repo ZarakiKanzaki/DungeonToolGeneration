@@ -18,10 +18,6 @@ addons:
 cache:
   directories:
     - $UNITY_DOWNLOAD_CACHE
-    - $HOME/.sonar/cache
-    # This contains the CFamily cache. According to https://docs.travis-ci.com/user/caching/#pull-request-builds-and-caches,
-    # for a PR, it will use the cache of the target branch if the branch of the PR does not already have its cache.
-    - $HOME/.cfamily
 
 
 before_install:
@@ -36,17 +32,17 @@ script:
 - ./travis-build/run-tests.sh
 - sonar-scanner
 
-# after_success:
-# - ./travis-build/export-unity-package.sh
+after_success:
+- ./travis-build/export-unity-package.sh
 
-# before_deploy:
-# - DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
+before_deploy:
+- DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
 
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_TOKEN
-#   file: $DEPLOY_UNITYPACKAGE
-#   skip_cleanup: true
-#   overwrite: true
-#   on:
-#     tags: true 
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: $DEPLOY_UNITYPACKAGE
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true 
