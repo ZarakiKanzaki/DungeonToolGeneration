@@ -8,9 +8,9 @@ env:
 
 addons:
   sonarcloud:
-    organization: "sonarcloud_organization_key" # the key of the org you chose at step #3
+    organization: "zarakikanzaki" # the key of the org you chose at step #3
     token:
-      secure: "04255678b4efe6d54ee7b09f4ed0807dab5b09d2" # encrypted value of your token
+      secure: "312fdee5af44957e9f38c85de20b5611c55cb036" # encrypted value of your token
 
 cache:
   directories:
