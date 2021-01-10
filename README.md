@@ -1,8 +1,8 @@
 # DungeonToolGeneration
-### Build status
-### Branch: `master`
+
 [![Build Status](https://travis-ci.com/github/ZarakiKanzaki/DungeonToolGeneration.svg?branch=master)](https://travis-ci.com/github/ZarakiKanzaki/DungeonToolGeneration)
 [![unity version](https://img.shields.io/badge/unity%20version-2019.3.4f1-green.svg)]()
+
 This is a tool made to help me create PCG tilemaps on Unity3d. The idea based on this tool is that I wanted to create a MetrodiVania with rouguelike features, things that you could usually find in games like Hades, Sundered, Dead Cells. This last game made me thinking about this kind of tool because on some interview the developer said that their maps were a hybrid between PCG and handmade, I tried to make a version that could fit my work. 
 Hope one day to publish on unity asset store with a "Pay what you want" option.
 
