@@ -20,6 +20,7 @@ trigger:
     - master
     pr:
     - master
+    - releases
     exclude:
     - releases/old*
 
