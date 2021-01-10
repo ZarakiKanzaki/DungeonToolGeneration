@@ -1,0 +1,46 @@
+language: objective-c
+osx_image: xcode9.2
+rvm:
+- 2.2         #see before_install for getting RVM stable.
+# dist: xenial
+env:
+- TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
+
+	
+addons:
+  sonarcloud:
+    organization: "zarakikanzaki" # the key of the org you chose at step #3
+    token:
+      secure: "mXU3oQ+BoS7m/dGgjGTGDYXsYf5OiAMS51UDEUXjMU3iF10KOxnTan/BKMonxAQffWp5S4APfsJDlcpi63NIijlf6fXHeuw4Osmo47eY85R/epWEjT7/7FtYIz0kAdzhFeRrG028/DS3WOqZ3uUNMBl3qG/HilgsTe+GX5BaJ6MXtvVmhtBE2Fhc0Qq6/F0UtdrqNIRhA1bEsXTalPyJu2ELwPXLgKzYgesUQQbnf1Yx+yq5NJ9A62y2djai17j71CE6CUUnO7a9AYufcrzqZboVai0d447P1yDkCPFFdm2yQEM0Ffz6aPMvBwRkLZjtgwg5TpijdT223kPqeK0xCwRxjjC8I88ueMo3vGttR8A4FZPL5JbW0c0buNAtObDms3C7ibtpWKn4xG59kQpbn54Vsq6jMXdJWcO2clXKKEc8wy7/EDEXtQwjPK/BTrljgntTc76+TQx+2JuHz5vJHuxW1DdVTwofNliC1w2WJ/HgzP8tdqFBklIlWm+28bwvu6oaoutiYGKK3czNcki2us0y/GcUz+kOTj84TkDV6B76D+4zSFCb75yXh7iUFSilDwCSGY5a+jH3EHwHoPOFgwhdHa2hjpGl+1CSxxtNxzn2qtOeSKukYIznPdDfvylvcOCnGbAE3TD2OfZLVq+gjb6qeEKairic4iokg+1OfeE=" # encrypted value of your token
+
+cache:
+  directories:
+    - $UNITY_DOWNLOAD_CACHE
+
+
+before_install:
+- chmod a+x ./travis-build/*.sh
+
+install:
+- cat /etc/hosts
+- ./travis-build/install-unity.sh
+
+script:
+- ./travis-build/build.sh
+- ./travis-build/run-tests.sh
+- sonar-scanner
+
+after_success:
+- ./travis-build/export-unity-package.sh
+
+# before_deploy:
+# - DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
+
+# deploy:
+#   provider: releases
+#   api_key: $GITHUB_TOKEN
+#   file: $DEPLOY_UNITYPACKAGE
+#   skip_cleanup: true
+#   overwrite: true
+#   on:
+#     tags: true 
