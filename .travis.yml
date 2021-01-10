@@ -23,6 +23,7 @@ trigger:
     - develop
     exclude:
     - releases/old*
+    - develop
 
 
 env:
