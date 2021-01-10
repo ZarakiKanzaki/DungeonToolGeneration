@@ -1,9 +1,8 @@
 language: objective-c
-dist: xenial
 osx_image: xcode9.2
 rvm:
 - 2.2         #see before_install for getting RVM stable.
-
+dist: xenial
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 # matrix:
