@@ -4,14 +4,27 @@ rvm:
 - 2.2         #see before_install for getting RVM stable.
 dist: xenial
 
-on:
-  # Trigger analysis when pushing in master or pull requests, and when creating
-  # a pull request. 
-  push:
-    branches:
-      - master
-  pull_request:
-      types: [opened, synchronize, reopened]
+# on:
+#   # Trigger analysis when pushing in master or pull requests, and when creating
+#   # a pull request. 
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#       types: [opened, synchronize, reopened]
+
+# specific branch build
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+    pr:
+    - master
+    - releases/*
+    exclude:
+    - releases/old*
+
 
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
