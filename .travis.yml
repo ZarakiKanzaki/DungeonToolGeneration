@@ -21,8 +21,7 @@ trigger:
     pr:
     - master
     - develop
-    exclude:
-    - releases/old*
+    except:
     - develop
 
 
