@@ -28,7 +28,7 @@ install:
 script:
 - ./travis-build/build.sh
 - ./travis-build/run-tests.sh
-# - sonar-scanner
+- sonar-scanner
 
 after_success:
 - ./travis-build/export-unity-package.sh
