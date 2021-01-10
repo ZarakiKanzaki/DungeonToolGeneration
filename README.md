@@ -1,14 +1,16 @@
 # DungeonToolGeneration
 ## Unity version 2019.3.4f1
-Tool per la generazione di dungeon con tilemaps e le più famose tecniche di PCG con anche la possibiltà di salvare il prefab
+This is a tool made to help me create PCG tilemaps on Unity3d. The idea based on this tool is that I wanted to create a MetrodiVania with rouguelike features, things that you could usually find in games like Hades, Sundered, Dead Cells. This last game made me thinking about this kind of tool because on some interview the developer said that their maps were a hybrid between PCG and handmade, I tried to make a version that could fit my work. 
+Hope one day to publish on unity asset store with a "Pay what you want" option
+#(Currently WIP)
 
-
-Le feature da avere sono:
+All features I want to create:
  
-- Scelta di langhezza e altezza
-- Scelta del tipo di generazione
-- Modifica dei parametri in base alla creazione
-- Entrare nella edit mode per possibilmente per utilizzare la mano dello sviluppatore/designer per modificare la Tilemap
-- Salvare in un JSON la formazione della tileMap con tutte le informazioni del caso (probabile integrazione con castleDB, ancora da vedere)
-- Salvare la tilemap come prefab totalmente nuovo
-- Possibiltà di categorizzare su livelli le tipologie di tiles da selezionare (successivamente sarà in base al livello/zona che si vorrà sviluppare la stanza in modo da precaricare i  brushes della tilemap)
+- Choose Height and Width
+- Choose different types of PCG mode
+- Change paramethers based on the PCG chosen
+- Enter edit mode (it will comprehend loading an existing prefab, editing any single tile, etc.)
+- JSON Exportation (castleDB integration)
+- Save the tilemap as a Prefab
+- Characterize your tiles in order to make a colletion for every kind of map (think about soil, walls etc. for each kind of level or area of effect you want to create, and have a collection to each category to be used for that kind of level)
+- Include your own collection of tiles
