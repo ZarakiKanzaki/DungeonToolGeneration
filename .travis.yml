@@ -6,7 +6,6 @@ rvm:
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
 
-	
 addons:
   sonarcloud:
     organization: "zarakikanzaki" # the key of the org you chose at step #3
