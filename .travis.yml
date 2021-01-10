@@ -16,21 +16,12 @@ cache:
   directories:
     - $UNITY_DOWNLOAD_CACHE
 
-    
-steps:
-- task: PowerShell@2
-  displayName: "Use JDK11 by default"
-  inputs:
-    targetType: 'inline'
-    script: |
-      $jdkPath = $env:JAVA_HOME_11_X64
-      Write-Host "##vso[task.setvariable variable=JAVA_HOME]$jdkPath"
-    
-        
+
 before_install:
 - chmod a+x ./travis-build/*.sh
 
 install:
+- echo "##vso[task.setvariable variable=JAVA_HOME]$JAVA_HOME_11_X64"
 - cat /etc/hosts
 - ./travis-build/install-unity.sh
 
@@ -39,8 +30,8 @@ script:
 - ./travis-build/run-tests.sh
 - sonar-scanner
 
-after_success:
-- ./travis-build/export-unity-package.sh
+# after_success:
+# - ./travis-build/export-unity-package.sh
 
 # before_deploy:
 # - DEPLOY_UNITYPACKAGE="$(ls -a release/*.zip | head -n 1)"
