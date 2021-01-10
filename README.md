@@ -14,3 +14,6 @@ All features I want to create:
 - Save the tilemap as a Prefab
 - Characterize your tiles in order to make a colletion for every kind of map (think about soil, walls etc. for each kind of level or area of effect you want to create, and have a collection to each category to be used for that kind of level)
 - Include your own collection of tiles
+
+
+If you are interested to collaborate in this project send me an e-mail on donakod@gmail.com
