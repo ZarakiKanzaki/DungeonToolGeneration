@@ -19,6 +19,8 @@ mkdir $UNITY_BUILD_DIR
   -logFile \
   -projectPath "$PROJECT_PATH" \
   -buildWindows64Player  "$(pwd)/build/win/ci-build.exe" \
+  -username "$UNITYEMAIL" \
+  -password "$UNITYPASSWORD" \
   -quit \
   | tee "$LOG_FILE"
   

@@ -3,12 +3,31 @@ osx_image: xcode9.2
 rvm:
 - 2.2         #see before_install for getting RVM stable.
 dist: xenial
+
+# on:
+#   # Trigger analysis when pushing in master or pull requests, and when creating
+#   # a pull request. 
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#       types: [opened, synchronize, reopened]
+
+# specific branch build
+trigger:
+  branches:
+    only:
+    - master
+    pr:
+    - master
+    - develop
+    exclude:
+    - releases/old*
+
+
 env:
 - TRAVIS_TAG="Deploy-2019.3.4f1" PROJECT_NAME="DungeonToolGeneration" UNITY_PROJECT_PATH="" DEPLOY_UNITYPACKAGE="path set in deploy script"
-# matrix:
-#   - TRAVIS_JDK=adopt-openj9@1.12
-#   - TRAVIS_JDK=adopt-openj9@1.11.0-4
-	
+
 addons:
   sonarcloud:
     organization: "zarakikanzaki" # the key of the org you chose at step #3
