@@ -10,7 +10,7 @@ addons:
   sonarcloud:
     organization: "zarakikanzaki" # the key of the org you chose at step #3
     token:
-      secure: "312fdee5af44957e9f38c85de20b5611c55cb036" # encrypted value of your token
+      secure: "mXU3oQ+BoS7m/dGgjGTGDYXsYf5OiAMS51UDEUXjMU3iF10KOxnTan/BKMonxAQffWp5S4APfsJDlcpi63NIijlf6fXHeuw4Osmo47eY85R/epWEjT7/7FtYIz0kAdzhFeRrG028/DS3WOqZ3uUNMBl3qG/HilgsTe+GX5BaJ6MXtvVmhtBE2Fhc0Qq6/F0UtdrqNIRhA1bEsXTalPyJu2ELwPXLgKzYgesUQQbnf1Yx+yq5NJ9A62y2djai17j71CE6CUUnO7a9AYufcrzqZboVai0d447P1yDkCPFFdm2yQEM0Ffz6aPMvBwRkLZjtgwg5TpijdT223kPqeK0xCwRxjjC8I88ueMo3vGttR8A4FZPL5JbW0c0buNAtObDms3C7ibtpWKn4xG59kQpbn54Vsq6jMXdJWcO2clXKKEc8wy7/EDEXtQwjPK/BTrljgntTc76+TQx+2JuHz5vJHuxW1DdVTwofNliC1w2WJ/HgzP8tdqFBklIlWm+28bwvu6oaoutiYGKK3czNcki2us0y/GcUz+kOTj84TkDV6B76D+4zSFCb75yXh7iUFSilDwCSGY5a+jH3EHwHoPOFgwhdHa2hjpGl+1CSxxtNxzn2qtOeSKukYIznPdDfvylvcOCnGbAE3TD2OfZLVq+gjb6qeEKairic4iokg+1OfeE=" # encrypted value of your token
 
 cache:
   directories:
