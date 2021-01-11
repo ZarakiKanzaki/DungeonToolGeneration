@@ -1,7 +1,7 @@
 # DungeonToolGeneration
 ### Build status
-### Branch: `develop`
-[![Build Status](https://travis-ci.com/ZarakiKanzaki/DungeonToolGeneration.svg?branch=develop)](https://travis-ci.com/github/ZarakiKanzaki/DungeonToolGeneration)
+### Branch: `master`
+[![Build Status](https://travis-ci.com/ZarakiKanzaki/DungeonToolGeneration.svg?branch=master)](https://travis-ci.com/github/ZarakiKanzaki/DungeonToolGeneration)
 
 [![unity version](https://img.shields.io/badge/unity%20version-2019.3.4f1-green.svg)](https://unity3d.com/unity/whats-new/2019.3.4)
 
